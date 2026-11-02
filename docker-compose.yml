@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  baileys-service:
+    build: .
+    container_name: baileys_whatsapp
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - API_PASSWORD=YourSecurePassword123
+      - AUTH_DIR=/app/auth_info_baileys
+    volumes:
+      # Mounts credentials on your host machine to preserve WhatsApp login session
+      - ./auth_info_baileys:/app/auth_info_baileys
